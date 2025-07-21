@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inward — Students of 2025</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="book">
+      <!-- Front cover -->
+      <div class="page cover" id="cover" onclick="openBook()"></div>
+
+      <!-- Empty pages (you can insert real artwork later) -->
+      <div class="page page1"></div>
+      <div class="page page2"></div>
+      <div class="page page3"></div>
+      <div class="page page4"></div>
+      <div class="page page5"></div>
+      <div class="page page6"></div>
+      <div class="page page7"></div>
+      <div class="page page8"></div>
+      <div class="page page9"></div>
+      <div class="page page10"></div>
+
+      <!-- Back cover -->
+      <div class="page back-cover" onclick="closeBook()"></div>
+    </div>
+  </div>
+
+  <!-- Sound -->
+  <audio id="openSound" src="URL_TO_OPEN_SOUND.mp3"></audio>
+  <audio id="closeSound" src="URL_TO_CLOSE_SOUND.mp3"></audio>
+
+  <script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    const openSound = document.getElementById('openSound');
+    const closeSound = document.getElementById('closeSound');
+
+    function openBook() {
+      if (currentPage === 0) {
+        pages[currentPage].classList.add('flipped');
+        currentPage++;
+        openSound.play();
+      }
+    }
+
+    function closeBook() {
+      if (currentPage > 0) {
+        currentPage = 0;
+        pages.forEach(p => p.classList.remove('flipped'));
+        closeSound.play();
+      }
+    }
+
+    // Page flipping with click
+    pages.forEach((page, index) => {
+      page.addEventListener('click', () => {
+        if (index === 0) return; // Cover
+        if (index === pages.length - 1) return; // Back cover
+
+        if (!page.classList.contains('flipped')) {
+          page.classList.add('flipped');
+          currentPage++;
+          openSound.play();
+        } else {
+          page.classList.remove('flipped');
+          currentPage--;
+          closeSound.play();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* Custom background for entire page */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.book {
+  position: relative;
+  width: 320px;
+  height: 400px;
+  perspective: 2000px;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform-origin: left;
+  transform: rotateY(0deg);
+  transition: transform 1s;
+  backface-visibility: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Front cover */
+.cover {
+  background-image: url('cover.png');
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* Back cover */
+.back-cover {
+  background-image: url('backcover.png');
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Flipped page effect */
+.page.flipped {
+  transform: rotateY(-180deg);
+  z-index: 0 !important;
+}
+
+/* Pages (white paper-like) */
+.page1, .page2, .page3, .page4,
+.page5, .page6, .page7, .page8,
+.page9, .page10 {
+  background-image: url('page1.png');
+  z-index: 9;
+}
